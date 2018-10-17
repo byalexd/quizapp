@@ -1,0 +1,50 @@
+﻿@model QuizApp.ViewModel.Managing.AnswerViewModel
+
+@{
+    ViewBag.Title = "EditAnswer";
+}
+
+<h2>Edit Answer</h2>
+
+
+@using (Html.BeginForm(Html.BeginForm("UpdateQuestion", "Testing", new { answerGuid = @ViewBag.answerGuid }, FormMethod.Post)))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Answer View Model</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Instance, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Instance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Instance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsCorrect, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsCorrect)
+                    @Html.ValidationMessageFor(model => model.IsCorrect, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Go to Questions","GetQuestionsByTestGuid", new { testGuid = Session["testGuid"]}, new {@class ="btn btn-info"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

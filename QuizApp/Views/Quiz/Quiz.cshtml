@@ -1,0 +1,66 @@
+﻿@using QuizApp.ViewModel.Managing
+@model TestingUrlViewModel
+
+@{
+    ViewBag.Title = "Quiz";
+    Layout = "~/Views/Shared/_QuizLayout.cshtml";
+}
+
+<h2>Quiz ! ! !</h2>
+
+<div>
+    <h3>TestingUrlViewModel</h3>
+    <hr />
+    <dl class="">
+        <dt>
+            @Html.DisplayNameFor(model => model.TestName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interviewee)
+        </dt>
+        @if (Model.Interviewee != null)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.Interviewee)
+            </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.EditorFor(model => model.Interviewee)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfRuns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfRuns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowedStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowedStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowedEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowedEndDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Start", "GetInfoAndStartTest", new { testingUrlGuid = Model.Guid }, new { @class = "btn btn-default" })
+</p>

@@ -1,0 +1,56 @@
+﻿@using QuizApp.ViewModel.Managing
+@model IEnumerable<TestViewModel>
+@{
+    ViewBag.Title = "Test Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row align-content-center">
+    @Html.ActionLink("CreateTest", "CreateTest", "Testing", null, new { @class = "btn btn-primary col-md-2 text-center" })
+</div>
+<hr />
+<div class="form-inline row">
+    <br />
+    <table class="table-info">
+        <div class="form-group col-md-4">
+            <p>Name</p>
+        </div>
+        <div class="form-group col-md-4">
+            <p>Description</p>
+        </div>
+    </table>
+    
+    <div class="form-group col-md-1">
+
+    </div>
+    <div class="form-group col-md-1">
+
+    </div>
+    <div class="form-group col-md-2">
+
+    </div>
+</div>
+
+@foreach (TestViewModel n in Model)
+{
+    <div class="form-inline row">
+        <br />
+        <div class="form-group col-md-4 table-bordered">
+            <p>@n.Name</p>
+        </div>
+        <div class="form-group col-md-4 table-bordered">
+            <p>@n.Description</p>
+        </div>
+        <div class="form-group col-md-1">
+            @Html.ActionLink("Edit test", "UpdateTest", "Testing", new { testGuid = n.Guid }, new { @class = "btn btn-primary" })
+        </div>
+        <div class="form-group col-md-1">
+            @Html.ActionLink("Delete test", "RemoveTest", "Testing", new { testGuid = n.Guid }, new { @class = "btn btn-info" })
+        </div>
+        <div class="form-group col-md-2">
+            @Html.ActionLink("Create Test URL", "CreateTestingUrl", "Testing", new { testGuid = n.Guid }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+}

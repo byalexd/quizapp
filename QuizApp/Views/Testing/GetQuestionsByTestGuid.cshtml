@@ -1,0 +1,42 @@
+﻿@using QuizApp.ViewModel.Managing
+@model List<QuestionViewModel>
+
+<div class="row">
+    @Html.ActionLink("Back", "UpdateTest", "Testing", new { testGuid = Session["testGuid"] }, new { @class = "btn btn-default col-md-1" }) 
+    @Html.ActionLink("Create New Question", "CreateQuestion", "Testing", new { testGuid = Session["testGuid"] }, new { @class = "btn btn-primary col-md-2 col-md-offset-9" }) 
+</div>
+
+<h2>Questions</h2>
+
+@foreach(QuestionViewModel n in Model) {     
+        
+<div class="row">
+    <div class="form-group question row">
+        <div class="col-md-2 pull-right">
+            @Html.ActionLink("Update", "UpdateQuestion", "Testing", new { questionGuid = n.Guid}, new { @class = "col-md-10 btn btn-primary" })
+        </div>
+    </div>
+    <div class="form-group question row">
+        <p class="col-md-1">Instance:</p>
+        <div class="col-md-8">
+            <p>@n.Instance</p>
+        </div>
+        <div class="col-md-2 pull-right">
+            @Html.ActionLink("Delete", "RemoveQuestion", "Testing", new { questionGuid = n.Guid }, new { @class = "col-md-10 btn btn-danger" })
+        </div>
+    </div>
+    <div class="form-group question row">
+        <p class="col-md-1">Hint:</p>
+        <div class="col-md-8">
+            <p>@n.Hint</p>
+        </div>
+        <div class="col-md-2 pull-right">
+            @Html.ActionLink("Create Answer", "CreateAnswer", "Testing", new { questionGuid = n.Guid }, new { @class = "col-md-10 btn btn-default" })
+        </div>
+   
+    </div>
+    <hr class="form-group col-md-12 my-Line" />
+
+</div>
+
+}
